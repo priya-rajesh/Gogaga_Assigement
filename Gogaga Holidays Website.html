@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Turismo reponsive website build using HTML5, CSS3 and Javascript. The complete layout of the page is build using grid layout and flexbox with some cool animations" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <title>Turismo - Explore the world</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background-color: #e7e7e7;
+        }
+
+        .form-fields {
+            display: flex;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+            border-right: 1px solid #bbb;
+        }
+
+        li:last-child {
+            border-right: none;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        .active {
+            background-color: #04aa6d;
+        }
+
+        .navigation {
+            display: flex;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #003b95;
+        }
+
+        .main-container {
+            /* margin: 30px; */
+            width: 80%;
+            margin: auto;
+            padding-top: 30px;
+        }
+
+        .ml-auto {
+            margin-left: auto;
+        }
+
+        .mr-auto {
+            margin-right: auto;
+        }
+
+        .logo {
+            color: #fff;
+            margin: 15px;
+        }
+
+        .img {
+            box-sizing: border-box;
+            display: inline-block;
+            overflow: hidden;
+            width: 270px;
+            height: 370px;
+            background: none;
+            opacity: 1;
+            border: 0px;
+            margin: 0px;
+            padding: 0px;
+            position: relative;
+            /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+        }
+
+        .d-flex {
+            display: flex;
+
+        }
+
+        .align-center {
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gap {
+            gap: 20px;
+        }
+
+        .img-container {
+            background: #ffff;
+            padding: 9px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            border-radius: 10px;
+        }
+
+        .divider {
+            color: lightgray;
+        }
+
+        .flex-column {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            flex-basis: 0;
+            max-width: 100%;
+        }
+
+        .mx-5 {
+            margin: 0px 15px;
+        }
+
+
+        /*  custom dropdown start  */
+
+        .custom-select {
+            min-width: 350px;
+            position: relative;
+        }
+
+        .price{
+            color: #04AA6D;
+        }
+        select {
+            appearance: none;
+            /*  safari  */
+            -webkit-appearance: none;
+            /*  other styles for aesthetics */
+        }
+
+        /*  custom dropdown end  */
+
+        /* hotel booking css start */
+
+        .hotel-container {
+            background-color: #ffffff;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 10px;
+        }
+
+        .hotel-container img{
+            width: 500px;
+            height: 300px;
+        }
+
+        .badge{
+            background: aqua;
+            padding: 10px;
+            width: 21px;
+            border-radius: 14px;
+        }
+
+         /* hotel booking css end */
+
+
+
+        /* flight list css start */
+
+        .flight-container {
+            background-color: #ffffff;
+            padding: 15px;
+            width: 100%;
+            border-top: 5px solid red;
+            border-radius: 10px;
+        }
+
+        .bg-white {
+            background-color: #ffffff;
+        }
+
+        .radio-section{
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 25%;
+        }
+
+        /* flight list css end */
+
+        main {
+            margin-bottom: 50px;
+        }
+
+        .card {
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+
+        .fs-20 {
+            font-size: 20px;
+        }
+
+        .flight-container-logo {
+            display: inline-flex;
+            gap: 9px;
+            align-items: center;
+            /* padding-left: 35px; */
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button, input[type=submit],input[type=reset],.button {
+            background-color: #04AA6D;
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="navigation">
+            <div class="logo">Gogaga</div>
+            <ul class="ml-auto">
+                <li>
+                    <a href="#holiday_packges"> Holiday Packages </a>
+                </li>
+                <li>
+                    <a href="#flight_booking"> Flight Booking </a>
+                </li>
+                <li>
+                    <a href="#hotel_booking"> Hotel Booking </a>
+                </li>
+                <li>
+                    <a href="#package_collections"> Package Collections </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section id="holiday_packges">
+            <div class="main-container">
+                <div class="d-flex align-center gap bg-white card" style="padding: 40px; border-radius: 10px;">
+                    <select name="no_of_days" id="no_of_days">
+                        <option value="">No Of Days</option>
+                        <option value="1">3 to 5 Days</option>
+                        <option value="2">4 to 8 Days</option>
+                        <option value="3">9 to 12 Days</option>
+                        <option value="4">13 to 16 Days</option>
+                    </select>
+                    <select name="no_of_ratings" id="no_of_ratings">
+                        <option value="">Ratings</option>
+                        <option value="1">3 Star</option>
+                        <option value="2">4 Star</option>
+                        <option value="3">5 Star</option>
+                    </select>
+                    <select name="budget" id="budget">
+                        <option value="">Budget</option>
+                        <option value="1">Below 50k</option>
+                        <option value="2">50k to 75k</option>
+                        <option value="3">75k to 1L</option>
+                        <option value="4">1L to 2L</option>
+                    </select>
+                </div>
+                <h1>Trending Destinations</h1>
+                <div class="d-flex align-center gap">
+                    <div class="img-container">
+                        <span class="img">
+                            <img alt="Maldives Tour Packages"
+                                srcset="https://pyt-images.imgix.net//pyt-images.imgix.net/Maldives_new_e1aae43ade.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20 1x, https://pyt-images.imgix.net//pyt-images.imgix.net/Maldives_new_e1aae43ade.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20 2x"
+                                src="https://pyt-images.imgix.net//pyt-images.imgix.net/Maldives_new_e1aae43ade.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20"
+                                decoding="async" data-nimg="fixed"
+                                style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;" />
+                        </span>
+                        <div class="fs-20">
+                            Price 50k <span class="divider">|</span> 5 Days <span class="divider">|</span>
+                            4 Star
+                        </div>
+                    </div>
+                    </span>
+                    <div class="img-container">
+                        <span class="img">
+                            <img alt="France Tour Packages"
+                                srcset="https://pyt-images.imgix.net//pyt-images.imgix.net/France_0a20536a7f_50bf02d6db.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20 1x, https://pyt-images.imgix.net//pyt-images.imgix.net/France_0a20536a7f_50bf02d6db.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20 2x"
+                                src="https://pyt-images.imgix.net//pyt-images.imgix.net/France_0a20536a7f_50bf02d6db.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20"
+                                decoding="async" data-nimg="fixed"
+                                style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;" />
+                        </span>
+                        <div class="fs-20">
+                            Price 60k <span class="divider">|</span> 5 Days <span class="divider">|</span>
+                            4 Star
+                        </div>
+                    </div>
+                    <div class="img-container">
+                        <span class="img">
+                            <img alt="Switzerland Tour Packages"
+                                srcset="https://pyt-images.imgix.net//pyt-images.imgix.net/Swiz_746476433d_e1f6439d9a.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20 1x, https://pyt-images.imgix.net//pyt-images.imgix.net/Swiz_746476433d_e1f6439d9a.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20 2x"
+                                src="https://pyt-images.imgix.net//pyt-images.imgix.net/Swiz_746476433d_e1f6439d9a.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20"
+                                decoding="async" data-nimg="fixed"
+                                style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;" />
+                        </span>
+                        <div class="fs-20">
+                            Price 75k <span class="divider">|</span> 7 Days <span class="divider">|</span>
+                            4 Star
+                        </div>
+                    </div>
+                    <div class="img-container">
+                        <span class="img">
+                            <img alt="Turkey Tour Packages"
+                                srcset="https://pyt-images.imgix.net//pyt-images.imgix.net/Turkey_min_2d467446f8.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20 1x, https://pyt-images.imgix.net//pyt-images.imgix.net/Turkey_min_2d467446f8.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20 2x"
+                                src="https://pyt-images.imgix.net//pyt-images.imgix.net/Turkey_min_2d467446f8.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20"
+                                decoding="async" data-nimg="fixed"
+                                style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;" />
+                        </span>
+                        <div class="fs-20">
+                            Price 80k <span class="divider">|</span> 7 Days <span class="divider">|</span>
+                            4 Star
+                        </div>
+                    </div>
+                </div>
+                <h1>Europe and Oceania</h1>
+                <div class="d-flex align-center gap">
+                    <div class="img-container">
+                        <span class="img">
+                            <img alt="Australia Tour Packages"
+                                src="https://pyt-images.imgix.net//pyt-images.imgix.net/images/activity/a.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20"
+                                decoding="async" data-nimg="fixed"
+                                style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;"
+                                srcset="https://pyt-images.imgix.net//pyt-images.imgix.net/images/activity/a.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20 1x, https://pyt-images.imgix.net//pyt-images.imgix.net/images/activity/a.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20 2x" />
+                        </span>
+                        <div class="fs-20">
+                            Price 60k <span class="divider">|</span> 5 Days <span class="divider">|</span>
+                            4 Star
+                        </div>
+                    </div>
+                    <div class="img-container">
+                        <span class="img">
+                            <img alt="New-Zealand Tour Packages"
+                                src="https://pyt-images.imgix.net//pyt-images.imgix.net/New_20_Zealand_min_0500cb2cdf.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20"
+                                decoding="async" data-nimg="fixed"
+                                style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;"
+                                srcset="https://pyt-images.imgix.net//pyt-images.imgix.net/New_20_Zealand_min_0500cb2cdf.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20 1x, https://pyt-images.imgix.net//pyt-images.imgix.net/New_20_Zealand_min_0500cb2cdf.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20 2x" />
+                        </span>
+                        <div class="fs-20">
+                            Price 60k <span class="divider">|</span> 5 Days <span class="divider">|</span>
+                            3.7 Star
+                        </div>
+                    </div>
+                    <div class="img-container">
+                        <span class="img">
+                            <img alt="Norway Tour Packages"
+                                src="https://pyt-images.imgix.net//pyt-images.imgix.net/norway_min_85e92ea680.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20"
+                                decoding="async" data-nimg="fixed"
+                                style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;"
+                                srcset="https://pyt-images.imgix.net//pyt-images.imgix.net/norway_min_85e92ea680.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20 1x, https://pyt-images.imgix.net//pyt-images.imgix.net/norway_min_85e92ea680.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20 2x" />
+                        </span>
+                        <div class="fs-20">
+                            Price 90k <span class="divider">|</span> 7 Days <span class="divider">|</span>
+                            4 Star
+                        </div>
+                    </div>
+                    <div class="img-container">
+                        <span class="img">
+                            <img alt="Finland Tour Packages"
+                                src="https://pyt-images.imgix.net//pyt-images.imgix.net/finland_min_c5976dc99d.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20"
+                                decoding="async" data-nimg="fixed"
+                                style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;"
+                                srcset="https://pyt-images.imgix.net//pyt-images.imgix.net/finland_min_c5976dc99d.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20 1x, https://pyt-images.imgix.net//pyt-images.imgix.net/finland_min_c5976dc99d.png?w=270&amp;h=360&amp;fit=crop&amp;dpr=2&amp;auto=format%2Ccompress%2Cenhance&amp;q=20 2x" />
+                        </span>
+                        <div class="fs-20">
+                            Price 85k <span class="divider">|</span> 5 Days <span class="divider">|</span>
+                            4 Star
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <section id="package_collections">
+        </section>
+
+        <section id="flight_booking">
+            <div class="main-container">
+                <h1>Flight Booking</h1>
+                <div class="d-flex align-center gap bg-white card" style="padding: 40px; border-radius: 10px;">
+                    <select name="type" id="type">
+                        <option value="">Type</option>
+                        <option value="1">One Way</option>
+                        <option value="2">Multi City</option>
+                    </select>
+                    <select name="from" id="from">
+                        <option value="">From</option>
+                        <option value="1">Chennai</option>
+                        <option value="2">Bangalore</option>
+                        <option value="3">Delhi</option>
+                    </select>
+                    <select name="to" id="to">
+                        <option value="">To</option>
+                        <option value="1">Maldivs</option>
+                        <option value="2">France</option>
+                        <option value="3">Turkey</option>
+                    </select>
+                    <button>Search</button>
+                    <a href="#flight_book" class="button">Book Now</a>
+                </div>
+                <div class="d-flex align-center gap" style="padding-top: 15px;">
+                    <div class="flight-container card">
+                        <div class="flight-container-logo">
+                            <img src="https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/6E.png?v=18&quot;"
+                                style="width: 25px;" /> <span>Indigo</span>
+                        </div>
+                        <div class="d-flex align-center">
+                            <div class="flex-column">
+                                <strong>05:45</strong>
+                                <span> Chennai</span>
+                            </div>
+                            <span class="mx-5">11h 55m</span>
+                            <div class="flex-column">
+                                <strong>05:45</strong>
+                                <span> Chennai</span>
+                            </div>
+                            <div class="flex-column mx-5">
+                                <strong>7000 Rs.</strong>
+                                <span> Per Adult</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flight-container card">
+                        <div class="flight-container-logo">
+                            <img src="https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/6E.png?v=18&quot;"
+                                style="width: 25px;" /> <span>Indigo</span>
+                        </div>
+                        <div class="d-flex align-center">
+                            <div class="flex-column">
+                                <strong>05:45</strong>
+                                <span> Chennai</span>
+                            </div>
+                            <span class="mx-5">11h 55m</span>
+                            <div class="flex-column">
+                                <strong>05:45</strong>
+                                <span> Chennai</span>
+                            </div>
+                            <div class="flex-column mx-5">
+                                <strong>7000 Rs.</strong>
+                                <span> Per Adult</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flight-container card">
+                        <div class="flight-container-logo">
+                            <img src="https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/6E.png?v=18&quot;"
+                                style="width: 25px;" /> <span>Indigo</span>
+                        </div>
+                        <div class="d-flex align-center">
+                            <div class="flex-column">
+                                <strong>05:45</strong>
+                                <span> Chennai</span>
+                            </div>
+                            <span class="mx-5">11h 55m</span>
+                            <div class="flex-column">
+                                <strong>05:45</strong>
+                                <span> Chennai</span>
+                            </div>
+                            <div class="flex-column mx-5">
+                                <strong>7000 Rs.</strong>
+                                <span> Per Adult</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hotel_booking">
+            <div class="main-container">
+                <h1>Hotel Booking</h1>
+                <span>Enter your dates to see the latest prices and deals</span>
+                <br />
+                <br />
+                <div class="bg-white card" style="padding: 40px; border-radius: 10px;">
+                    <div class="d-flex align-center gap" >
+                        <input type="text" placeholder="Where are you going?" />
+                        <input type="datetime-local" />
+                        <input type="datetime-local"  />
+                        <button type="button" style="width: 70%;">Search</button>
+                        <a href="#hotel_book" style="width: 70%;" class="button">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="hotel-container card">
+                    <div class="d-flex align-center">
+                        <div class="flex-column">
+                            <img  src="https://cf.bstatic.com/xdata/images/hotel/square600/269800030.webp?k=36327880a0414172df50fbeaa73b57b4382d7c32d62597e7a9dbd17126fb2e5d&amp;o=" alt="The Park Chennai, hotel in Chennai" loading="lazy">
+                        </div>
+                        <div class="flex-column mx-5">
+                           <h1>The Park Chennai</h1>
+                           <span>Hotel in T - Nagar, Chennai</span>
+                           <p>Located in Chennai’s business district, standing on the historic premises of the erstwhile Gemini Film Studios, The Park offers rooms with a flat-screen TV and rainshower facilities.</p>
+                        </div>
+                        <div class="flex-column">
+                            <span><strong>Pleasant</strong> 2,161 reviews</span><strong class="badge"> 6.3</strong>
+                            <br/>
+                            <br/>
+                            Price from
+                            <strong class="price">6,389.10 Rs</strong>
+                            per night
+                        </div>
+                        <div class="flex-column">
+                            <button type="button" class="button" style="width: 50%;">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hotel-container card">
+                    <div class="d-flex align-center">
+                        <div class="flex-column">
+                            <img  src="https://cf.bstatic.com/xdata/images/hotel/square600/269800030.webp?k=36327880a0414172df50fbeaa73b57b4382d7c32d62597e7a9dbd17126fb2e5d&amp;o=" alt="The Park Chennai, hotel in Chennai" loading="lazy">
+                        </div>
+                        <div class="flex-column mx-5">
+                           <h1>Ibis Chennai OMR - An Accor Brand</h1>
+                           <span>Ibis Chennai OMR - An Accor Brand</span>
+                           <p>Ibis Chennai OMR is located in the IT corridor, Sholinganallur on Rajiv Gandhi IT expressway and is 7 minutes from the ECR beaches.</p>
+                        </div>
+                        <div class="flex-column">
+                            <span><strong>Good</strong> 2,161 reviews</span><strong class="badge"> 6.3</strong>
+                            <br/>
+                            <br/>
+                            Price from
+                            <strong class="price">6,389.10 Rs</strong>
+                            per night
+                        </div>
+                        <div class="flex-column">
+                            <button type="button" class="button" style="width: 50%;">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hotel-container card">
+                    <div class="d-flex align-center">
+                        <div class="flex-column">
+                            <img  src="https://cf.bstatic.com/xdata/images/hotel/square600/269800030.webp?k=36327880a0414172df50fbeaa73b57b4382d7c32d62597e7a9dbd17126fb2e5d&amp;o=" alt="The Park Chennai, hotel in Chennai" loading="lazy">
+                        </div>
+                        <div class="flex-column mx-5">
+                           <h1>The Leela Palace Chennai</h1>
+                           <span>Hotel in South Chennai, Chennai</span>
+                           <p>Spread across 4.8 acres of peaceful land, the luxurious Leela Palace Chennai offers an outdoor pool and a fitness centre. Its grand and well-designed rooms enjoy 24-hour room services.x</p>
+                        </div>
+                        <div class="flex-column">
+                            <span><strong>Good</strong> 2,161 reviews</span><strong class="badge"> 8.7</strong>
+                            <br/>
+                            <br/>
+                            Price from
+                            <strong class="price">6,389.10 Rs</strong>
+                            per night
+                        </div>
+                        <div class="flex-column">
+                            <button type="button" class="button" style="width: 50%;">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            </div>
+        </section>
+
+        <section id="hotel_book">
+            <div class="main-container">
+                <h1>Hotel Booking</h1>
+                <span>Enter your details to book the hotel</span>
+                <br/>
+                <br/>
+                <div class="card bg-white" style="padding: 15px; width: 50%;">
+                <form  action="#" method="post">
+                    <div>
+                      <label for="name">Your Name</label>
+                      <input type="text" id="name" name="visitor_name" placeholder="John Doe" pattern="[A-Z\\sa-z]{3,20}" required>
+                    </div>
+                    <div>
+                      <label for="email">Your E-mail</label>
+                      <input type="email" id="email" name="visitor_email" placeholder="abc@email.com" required>
+                    </div>
+                    <div>
+                      <label for="phone">Your Phone</label>
+                      <input type="tel" id="phone" name="visitor_phone" placeholder="904337XXXX"  required>
+                    </div>
+                    
+                    <div >
+                      <label for="adult">Adults</label>
+                      <input type="number" id="adult" name="total_adults" placeholder="2" min="1" required>
+                    </div>
+                    <div >
+                      <label for="child">Children</label>
+                      <input type="number" id="child" name="total_children" placeholder="2" min="0" required>
+                    </div>
+                    <div >
+                      <label for="checkin-date">Check-in Date</label>
+                      <input type="date" id="checkin-date" name="checkin" required min="2024-03-16">
+                    </div>
+                    <div >
+                      <label for="checkout-date">Check-out Date</label>
+                      <input type="date" id="checkout-date" name="checkout" required>
+                    </div>
+                    <div>
+                      <label for="room-selection">Select Room Preference</label>
+                      <select id="room-selection" name="room_preference" required>
+                          <option value="">Choose a Room from the List</option>
+                          <option value="connecting">Connecting</option>
+                          <option value="adjoining">Adjoining</option>
+                          <option value="adjacent">Adjacent</option>
+                      </select>
+                    </div>
+                    
+                    <div>
+                      <label for="message">Anything Else?</label>
+                      <textarea id="message" name="visitor_message" placeholder="Tell us anything else that might be important." required></textarea>
+                    </div>
+                    <button type="submit">Book The Rooms</button>
+                  </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="flight_book">
+            <div class="main-container">
+                <h1>Flight Booking</h1>
+                <span>Enter your details to book the Flight</span>
+                <br/>
+                <br/>
+                <div class="card bg-white" style="padding: 15px;">
+                    <form action="#">
+                        <h2>Booking Details</h2>
+                        <div >
+                           <div>
+                              <select data-gtm-form-interact-field-id="0">
+                                 <option>From</option>
+                                 <option value="Lorem Ipsum">Lorem Ipsum</option>
+                                 <option value="Adipiscing">Adipiscing</option>
+                                 <option value="Lorem Ipsum">Lorem Ipsum</option>
+                                 <option value="Adipiscing">Adipiscing</option>
+                                 <option value="Lorem Ipsum">Lorem Ipsum</option>
+                                 <option value="Adipiscing">Adipiscing</option>
+                              </select>
+                           </div>
+                           <div>
+                              <select>
+                                 <option>To</option>
+                                 <option value="Lorem Ipsum">Lorem Ipsum</option>
+                                 <option value="Adipiscing">Adipiscing</option>
+                                 <option value="Lorem Ipsum">Lorem Ipsum</option>
+                                 <option value="Adipiscing">Adipiscing</option>
+                                 <option value="Lorem Ipsum">Lorem Ipsum</option>
+                                 <option value="Adipiscing">Adipiscing</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div >
+                           <div>
+                              <select>
+                                 <option>Preferred Airline</option>
+                                 <option value="American Airline">American Airline</option>
+                                 <option value="Delta Airlines">Delta Airlines</option>
+                                 <option value="Frontier Airline">Frontier Airline</option>
+                                 <option value="Jet Blue">Jet Blue</option>
+                                 <option value="Southwest Airlines">Southwest Airlines</option>
+                              </select>
+                           </div>
+                           <div>
+                              <select>
+                                 <option>Preferred Seating</option>
+                                 <option value="Window">Window</option>
+                                 <option value="Aisle">Aisle</option>
+                                 <option value="Special">Special (Request note below)</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="main-flex-w3ls-sectns">
+                           <div>
+                              <input id="datepicker" name="Text" type="text" placeholder="Departure Date" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required class="hasDatepicker">
+                           </div>
+                           <div>
+                              <input type="text" id="timepicker" name="Time" class="timepicker form-control hasWickedpicker" placeholder="Departure Time" value="" onkeypress="return false;">
+                           </div>
+                        </div>
+                        <div class="triple-wthree">
+                           <div class="field-agileinfo-spc form-w3-agile-text11">
+                              <select>
+                                 <option value="">Adult(12+ Yrs)</option>
+                                 <option value="1">1</option>
+                                 <option value="2">2</option>
+                                 <option value="3">3</option>
+                                 <option value="4">4</option>
+                                 <option value="5">5+</option>
+                              </select>
+                           </div>
+                           <div class="field-agileinfo-spc form-w3-agile-text22">
+                              <select>
+                                 <option value="">Children(2-11 Yrs)</option>
+                                 <option value="1">1</option>
+                                 <option value="2">2</option>
+                                 <option value="3">3</option>
+                                 <option value="4">4</option>
+                                 <option value="5">5+</option>
+                              </select>
+                           </div>
+                           <div class="field-agileinfo-spc form-w3-agile-text33">
+                              <select>
+                                 <option value="">Infant(under 2Yrs)</option>
+                                 <option value="1">1</option>
+                                 <option value="2">2</option>
+                                 <option value="3">3</option>
+                                 <option value="4">4</option>
+                                 <option value="5">5+</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="radio-section">
+                           <h4>Select your Fare</h4>
+                          <span class="d-flex align-center"> <input type="radio" id="one_way" name="fare" value="One Way" style="width: 10px;">&nbsp;&nbsp;
+                            <label for="one_way">One Way</label><br></span>
+                            <span class="d-flex align-center"> <input type="radio" id="round_trip" name="fare" value="Round-Trip" style="width: 10px;">&nbsp;&nbsp;
+                                <label for="round_trip">Round-Trip</label><br></span>
+                        </div>
+                        <div class="main-flex-w3ls-sectns">
+                           <div>
+                              <input id="datepicker1" name="Text" type="text" placeholder="Return Date" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required class="hasDatepicker">
+                           </div>
+                           <div>
+                              <input type="text" id="timepicker1" name="Time" class="timepicker form-control hasWickedpicker" placeholder="Return Time" value="" onkeypress="return false;">
+                           </div>
+                        </div>
+                        <div class="field-agileinfo-spc form-w3-agile-text">
+                           <textarea name="Message" placeholder="Any Message..."></textarea>
+                        </div>
+                        <h3>Personal Details</h3>
+                        <div class="main-flex-w3ls-sectns">
+                           <div>
+                              <input type="text" name="Name" placeholder="Full Name" required>
+                           </div>
+                           <div>
+                              <input type="text" name="Phone no" placeholder="Phone Number" required>
+                           </div>
+                        </div>
+                        <div class="field-agileinfo-spc form-w3-agile-text">
+                           <input type="email" name="Email" placeholder="Email" required>
+                        </div>
+                        <div class="clear"></div>
+                        <input type="submit" value="Submit">
+                        <input type="reset" value="Clear Form">
+                        <div class="clear"></div>
+                     </form>
+                </div>
+            </div>
+        </section>
+</body>
+
+</html>
